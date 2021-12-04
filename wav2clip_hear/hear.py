@@ -7,14 +7,14 @@ import wav2clip
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-def load_model(model_file_path, frame_length=16000):
+def load_model(model_file_path, frame_length=16000, hop_length=800):
     model = wav2clip.get_model(device=device, pretrained=True)
     model.sample_rate = 16000
     model.scene_embedding_size = 512
     model.timestamp_embedding_size = 512
     if frame_length:
         model.frame_length = frame_length
-        model.hop_length = int(model.sample_rate * 0.05)
+        model.hop_length = hop_length
     return model
 
 
