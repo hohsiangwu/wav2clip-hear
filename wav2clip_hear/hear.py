@@ -30,7 +30,7 @@ def get_timestamp_embeddings(
     timestamp = librosa.frames_to_time(
         range(embeddings[0].shape[0]), sr=model.sample_rate, hop_length=model.hop_length
     )
-    timestamps = np.array([timestamp] * embeddings.shape[0])
+    timestamps = np.array([timestamp * 1000] * embeddings.shape[0])
 
     assert len(timestamps.shape) == 2
     assert embeddings.shape[0] == audio.shape[0]
